@@ -15,8 +15,7 @@ Route::post('/locale/{lang}', [LocaleController::class, 'switch'])->name('locale
 
 // Auth
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [LoginController::class, 'show'])->name('login');
-    Route::redirect('/', '/login');
+    Route::get('/',           [LoginController::class, 'show'])->name('login');
     Route::post('/login',     [LoginController::class, 'login'])->name('login.post');
     Route::get('/register',   [RegisterController::class, 'showStep1'])->name('register');
     Route::post('/register',  [RegisterController::class, 'postStep1'])->name('register.post');

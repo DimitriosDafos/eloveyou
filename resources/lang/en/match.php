@@ -1,0 +1,16 @@
+<?php return [
+    'title' => 'Matches', 'incoming' => 'Incoming requests', 'sent' => 'Sent requests',
+    'no_incoming' => 'No pending requests. Browse people to send the first message.',
+    'no_sent' => 'No sent requests yet.',
+    'accept' => 'Accept', 'decline' => 'Decline', 'declined' => 'Request declined.',
+    'already_sent' => 'You already sent a request to this person.',
+    'already_sent_notice' => 'You already sent a request. Waiting for response.',
+    'go_to_chat' => 'Go to chat →',
+    'send_message' => 'Send first message',
+    'message_placeholder' => 'Write a genuine introduction — tell them who you are and why you reached out...',
+    'first_message_hint' => 'First messages are reviewed for contact information. Keep it personal and genuine.',
+    'filter_blocked' => 'Your message was blocked. Please remove contact information.',
+    'filter_blocked_msg' => "Your message couldn't be sent as written. To keep eloveyou a safe and fair space for everyone, we automatically check first messages for contact details like phone numbers or email addresses — sharing these directly isn't allowed at this stage. We know it can feel like a small hurdle, but it's our way of making sure connections here are as genuine as possible. The small fee that follows a mutual match is simply a thank-you for keeping this space real, human, and worth your time. Rewrite your message and focus on who you are — that's what makes people want to know you.",
+    'send_btn' => 'Send message', 'sent' => 'Your message was sent.',
+    'status_pending' => 'Pending', 'status_accepted' => 'Accepted', 'status_declined' => 'Declined',
+];

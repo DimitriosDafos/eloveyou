@@ -10,7 +10,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(\App\Http\Middleware\SetLocale::class);
+        $middleware->web(append: [\App\Http\Middleware\SetLocale::class]);
         $middleware->alias([
             'admin'            => \App\Http\Middleware\RequireAdmin::class,
             'profile.complete' => \App\Http\Middleware\RequireCompleteProfile::class,

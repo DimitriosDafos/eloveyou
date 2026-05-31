@@ -1,0 +1,14 @@
+{
+    "name": "eloveyou",
+    "short_name": "eloveyou",
+    "description": "Meet through words, not looks.",
+    "start_url": "/eloveyou/",
+    "scope": "/eloveyou/",
+    "display": "standalone",
+    "background_color": "#0d0b14",
+    "theme_color": "#c0284a",
+    "icons": [
+        { "src": "/eloveyou/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+        { "src": "/eloveyou/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    ]
+}

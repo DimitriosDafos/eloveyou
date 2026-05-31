@@ -1,0 +1,15 @@
+<?php return [
+    'title' => 'Anfragen', 'incoming' => 'Eingehende Anfragen', 'sent' => 'Gesendete Anfragen',
+    'no_incoming' => 'Keine Anfragen. Stöbere und schreib jemanden an.',
+    'no_sent' => 'Noch keine gesendeten Anfragen.',
+    'accept' => 'Annehmen', 'decline' => 'Ablehnen', 'declined' => 'Anfrage abgelehnt.',
+    'already_sent' => 'Du hast dieser Person bereits eine Anfrage gesendet.',
+    'already_sent_notice' => 'Anfrage gesendet. Warte auf Antwort.',
+    'go_to_chat' => 'Zum Chat →', 'send_message' => 'Erste Nachricht senden',
+    'message_placeholder' => 'Schreibe eine echte Vorstellung — wer du bist und warum du dich meldest...',
+    'first_message_hint' => 'Erste Nachrichten werden auf Kontaktdaten geprüft. Bleib persönlich und authentisch.',
+    'filter_blocked' => 'Deine Nachricht wurde blockiert. Bitte entferne Kontaktinformationen.',
+    'filter_blocked_msg' => 'Deine Nachricht konnte so nicht gesendet werden. Um eloveyou für alle sicher zu halten, prüfen wir erste Nachrichten automatisch auf Kontaktdaten wie Telefonnummern oder E-Mail-Adressen. Schreibe deine Nachricht um und fokussiere dich auf dich selbst — das macht dich interessant.',
+    'send_btn' => 'Nachricht senden', 'sent' => 'Deine Nachricht wurde gesendet.',
+    'status_pending' => 'Ausstehend', 'status_accepted' => 'Angenommen', 'status_declined' => 'Abgelehnt',
+];

@@ -1,7 +1,8 @@
 <?php
-
 use Illuminate\Support\Facades\Broadcast;
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::channel('chat.{chatId}', function ($user, $chatId) {
+    $chat = \App\Models\Chat::find($chatId);
+    if (!$chat) return false;
+    return in_array($user->id, [$chat->requester_id, $chat->acceptor_id]);
 });
