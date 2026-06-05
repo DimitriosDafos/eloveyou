@@ -53,6 +53,7 @@
             wssPort: 443,
             forceTLS: true,
             enabledTransports: ['ws', 'wss'],
+            wsPath: '/eloveyou-ws',
         });
     </script>
     @endauth

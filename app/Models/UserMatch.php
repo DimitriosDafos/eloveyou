@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-class Match extends Model {
+class UserMatch extends Model {
     protected $table = 'matches';
     protected $fillable = ['requester_id','acceptor_id','status','opening_message','opening_message_filtered','accepted_at','declined_at'];
     protected $casts = ['accepted_at'=>'datetime','declined_at'=>'datetime','opening_message_filtered'=>'boolean'];

@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers;
-use App\Models\Match as MatchModel;
+use App\Models\UserMatch;
 use App\Models\Chat;
 use App\Models\User;
 use App\Services\MessageFilterService;
@@ -11,9 +11,9 @@ class MatchController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $pending = MatchModel::where('acceptor_id', $user->id)->where('status','pending')
+        $pending = UserMatch::where('acceptor_id', $user->id)->where('status','pending')
             ->with('requester')->latest()->get();
-        $sent = MatchModel::where('requester_id', $user->id)->where('status','pending')
+        $sent = UserMatch::where('requester_id', $user->id)->where('status','pending')
             ->with('acceptor')->latest()->get();
         return view('matches.index', compact('pending', 'sent'));
     }
@@ -24,7 +24,7 @@ class MatchController extends Controller
         $user = auth()->user();
         $target = User::findOrFail($userId);
 
-        if (MatchModel::where('requester_id', $user->id)->where('acceptor_id', $userId)->exists()) {
+        if (UserMatch::where('requester_id', $user->id)->where('acceptor_id', $userId)->exists()) {
             return back()->withErrors(['message' => __('match.already_sent')]);
         }
 
@@ -33,7 +33,7 @@ class MatchController extends Controller
             return back()->withErrors(['message' => __('match.filter_blocked')])->with('filter_message', true);
         }
 
-        MatchModel::create([
+        UserMatch::create([
             'requester_id'   => $user->id,
             'acceptor_id'    => $userId,
             'opening_message'=> $request->message,
@@ -45,7 +45,7 @@ class MatchController extends Controller
 
     public function accept(Request $request, int $id)
     {
-        $match = MatchModel::where('acceptor_id', auth()->id())->where('id', $id)->where('status','pending')->firstOrFail();
+        $match = UserMatch::where('acceptor_id', auth()->id())->where('id', $id)->where('status','pending')->firstOrFail();
         $match->update(['status' => 'accepted', 'accepted_at' => now()]);
         $chat = Chat::create([
             'match_id'     => $match->id,
@@ -58,7 +58,7 @@ class MatchController extends Controller
 
     public function decline(Request $request, int $id)
     {
-        $match = MatchModel::where('acceptor_id', auth()->id())->where('id', $id)->where('status','pending')->firstOrFail();
+        $match = UserMatch::where('acceptor_id', auth()->id())->where('id', $id)->where('status','pending')->firstOrFail();
         $match->update(['status' => 'declined', 'declined_at' => now()]);
         return back()->with('success', __('match.declined'));
     }

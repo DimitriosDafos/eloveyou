@@ -6,14 +6,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Crypt;
-use App\Models\Match as MatchModel;
+use App\Models\UserMatch;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'username', 'real_name_encrypted', 'email', 'phone',
+        'username', 'real_name', 'real_name_encrypted', 'email', 'phone',
         'phone_verified_at', 'phone_verification_code', 'phone_code_expires_at',
         'age', 'gender', 'looking_for', 'location_city', 'location_region',
         'bio', 'locale', 'is_incognito', 'profile_complete',
@@ -39,7 +39,7 @@ class User extends Authenticatable
     protected function realName(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value ? Crypt::decryptString($value) : null,
+            get: fn ($value, $attrs) => isset($attrs["real_name_encrypted"]) ? Crypt::decryptString($attrs["real_name_encrypted"]) : null,
             set: fn ($value) => ['real_name_encrypted' => Crypt::encryptString($value)],
         );
     }
@@ -47,8 +47,8 @@ class User extends Authenticatable
     public function practices() { return $this->belongsToMany(Practice::class, 'user_practices'); }
     public function photos() { return $this->hasMany(Photo::class)->orderBy('sort_order'); }
     public function primaryPhoto() { return $this->hasOne(Photo::class)->where('is_primary', true)->where('status', 'approved'); }
-    public function sentMatches() { return $this->hasMany(MatchModel::class, 'requester_id'); }
-    public function receivedMatches() { return $this->hasMany(MatchModel::class, 'acceptor_id'); }
+    public function sentMatches() { return $this->hasMany(UserMatch::class, 'requester_id'); }
+    public function receivedMatches() { return $this->hasMany(UserMatch::class, 'acceptor_id'); }
     public function subscriptions() { return $this->hasMany(Subscription::class); }
     public function payments() { return $this->hasMany(Payment::class); }
     public function blocks() { return $this->hasMany(Block::class, 'blocker_id'); }
