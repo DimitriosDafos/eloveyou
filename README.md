@@ -118,15 +118,26 @@ This is a **startup-ready codebase** — built to be branded, configured, and la
 
 ## License & Purchase
 
-This project is listed for acquisition. If you're interested in taking over development or purchasing the full rights, please get in touch via GitHub Issues or direct message.
+This project is listed for acquisition at a fixed price.
 
-**What's included in a purchase:**
+### 💶 Price: €799
+
+**What's included:**
 - Full source code (this repository)
-- Database schema & migrations
-- All views (EN + DE)
-- Payment integration (Stripe + PayPal)
+- Database schema & all migrations
+- Complete Blade view set (English + German)
+- Stripe & PayPal payment integration
 - Admin panel
-- 1 hour handover call (optional)
+- Optional: 1 hour handover / setup call
+
+### Contact
+
+Interested? Reach out directly:
+
+- **Email:** developer@dafos.eu
+- **GitHub:** Open an [Issue](https://github.com/DimitriosDafos/eloveyou/issues) with the title `[Purchase Inquiry]`
+
+Payment via bank transfer or PayPal. Full source access granted upon receipt of payment.
 
 ---
 
