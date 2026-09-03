@@ -1,58 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# eLoveYou — Dating & Connection Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> A complete, production-ready dating platform built with Laravel 12. Designed to launch fast and monetize from day one.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## What is eLoveYou?
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**eLoveYou** is a full-featured dating and connection web application. It includes everything you need to run a niche or general-purpose matchmaking platform — from user registration and profile browsing to real-time chat, photo moderation, and integrated payments.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Built for founders and developers who want a solid, maintainable codebase they can brand and ship quickly.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Feature Overview
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### For Users
+- **Registration & Verification** — Email-verified sign-up, step-by-step profile setup
+- **Profile & Photos** — Photo upload with admin approval, incognito mode, account deletion
+- **Browse & Discover** — Filter by age group and interests/practices, paginated profiles
+- **Matching** — Send, accept and decline match requests
+- **Chat** — Unlock conversations via one-time payment or active subscription
+- **Payments** — Chat unlock (€0.99 / €3.99), subscription plans — via **Stripe** and **PayPal**
+- **Block & Report** — Full user safety toolset
+- **Multi-Language** — English and German included, easily extendable
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### For Operators
+- **Admin Panel** — User management, photo moderation, reports overview
+- **Subscription Management** — Track active subscribers and revenue
+- **Message Filtering** — Built-in content filter service
+- **GDPR-ready** — Terms of Service and Privacy Policy pages included
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Tech Stack
 
-```bash
-composer require laravel/boost --dev
+| Layer | Technology |
+|-------|-----------|
+| Backend | Laravel 12 / PHP 8.4 |
+| Database | MySQL / MariaDB |
+| Frontend | Blade + Alpine.js + Tailwind CSS |
+| Real-time | Laravel Reverb (WebSockets) |
+| Payments | Stripe + PayPal |
+| SMS/OTP | Twilio (optional) |
+| Storage | Laravel Storage (local or S3-compatible) |
 
-php artisan boost:install
+---
+
+## Project Structure
+
+```
+app/
+├── Http/Controllers/
+│   ├── Auth/              — Login, Registration, Verification
+│   ├── Admin/             — Admin panel
+│   ├── BrowseController   — Profile discovery & filters
+│   ├── ChatController     — Chat & messaging
+│   ├── MatchController    — Match requests
+│   ├── PaymentController  — Stripe & PayPal integration
+│   └── ProfileController  — Profile management & photos
+├── Models/
+│   ├── User, Photo, Chat, Message
+│   ├── UserMatch, Block, Report
+│   ├── Subscription, Payment, Practice
+database/migrations/       — 10 clean migrations, fully structured
+resources/views/           — Complete Blade view set (EN + DE)
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## Monetization Model
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+eLoveYou ships with a **freemium + pay-per-action** model out of the box:
 
-## Code of Conduct
+| Feature | Free | Subscriber (€/mo) |
+|---------|------|-------------------|
+| Browse profiles | ✓ | ✓ |
+| Send match requests | ✓ | ✓ |
+| Chat unlock | €3.99 / chat | €0.99 / chat |
+| Subscription | — | Configurable |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Prices are configurable in the controller — no hardcoded values in views.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Getting Started
 
-## License
+```bash
+git clone https://github.com/DimitriosDafos/eloveyou.git
+cd eloveyou
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+composer install
+npm install && npm run build
+
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan storage:link
+```
+
+Configure your `.env` with:
+- Database credentials
+- Stripe API keys (`STRIPE_KEY`, `STRIPE_SECRET`)
+- PayPal credentials (`PAYPAL_CLIENT_ID`, `PAYPAL_SECRET`)
+- Mail driver (SMTP)
+- Twilio (optional, for OTP SMS)
+- Laravel Reverb (for real-time chat)
+
+---
+
+## Status
+
+**Codebase complete.** All controllers, models, views, migrations and payment flows are implemented. The project requires environment configuration and final testing before going live.
+
+This is a **startup-ready codebase** — built to be branded, configured, and launched.
+
+---
+
+## License & Purchase
+
+This project is listed for acquisition. If you're interested in taking over development or purchasing the full rights, please get in touch via GitHub Issues or direct message.
+
+**What's included in a purchase:**
+- Full source code (this repository)
+- Database schema & migrations
+- All views (EN + DE)
+- Payment integration (Stripe + PayPal)
+- Admin panel
+- 1 hour handover call (optional)
+
+---
+
+*Built with Laravel 12 · PHP 8.4 · Stripe · PayPal · Reverb*
